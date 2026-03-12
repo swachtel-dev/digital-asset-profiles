@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Asset Profiles | FINAN-VIII Unit 5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #fafaf9;
+            color: #1c1917;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #0c0a09;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #57534e;
+            margin-bottom: 1rem;
+        }
+
+        .intro {
+            background: #ffffff;
+            border: 1px solid #e7e5e4;
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: #292524;
+        }
+
+        .intro p {
+            margin-bottom: 0.75rem;
+        }
+
+        .intro p:last-child {
+            margin-bottom: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        @media (min-width: 640px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e7e5e4;
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            transition: box-shadow 0.15s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0c0a09;
+        }
+
+        .ticker {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #57534e;
+            background: #f5f5f4;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            letter-spacing: 0.02em;
+        }
+
+        .category-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+        }
+
+        .cat-crypto       { background: #fef3c7; color: #92400e; }
+        .cat-stablecoin    { background: #d1fae5; color: #065f46; }
+        .cat-defi-lending  { background: #dbeafe; color: #1e40af; }
+        .cat-dex           { background: #ede9fe; color: #5b21b6; }
+        .cat-infrastructure { background: #e0e7ff; color: #3730a3; }
+        .cat-protocol      { background: #fce7f3; color: #9d174d; }
+        .cat-payment       { background: #ccfbf1; color: #115e59; }
+
+        .description {
+            font-size: 0.9rem;
+            color: #44403c;
+            margin-bottom: 0.75rem;
+        }
+
+        .metrics {
+            font-size: 0.85rem;
+            color: #57534e;
+            margin-bottom: 0.75rem;
+        }
+
+        .metrics dt {
+            font-weight: 600;
+            color: #44403c;
+            display: inline;
+        }
+
+        .metrics dd {
+            display: inline;
+            margin-left: 0;
+        }
+
+        .metrics dd::after {
+            content: '';
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .protocol-type {
+            font-size: 0.85rem;
+            color: #57534e;
+            margin-bottom: 0.75rem;
+        }
+
+        .protocol-type strong {
+            color: #44403c;
+        }
+
+        .links {
+            font-size: 0.85rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid #f5f5f4;
+        }
+
+        .links a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        .links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .links li {
+            margin-bottom: 0.2rem;
+        }
+
+        .links li::before {
+            content: '\2192';
+            margin-right: 0.4rem;
+            color: #a8a29e;
+        }
+
+        footer {
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e7e5e4;
+            font-size: 0.8rem;
+            color: #a8a29e;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Digital Asset Profiles</h1>
+        <p class="subtitle">FINAN-VIII Unit 5: Blockchain, Crypto, and DeFi</p>
+
+        <div class="intro">
+            <p>For the Digital Asset Evaluation assignment, you will choose <strong>one</strong> of the eight assets below and evaluate it across five dimensions: technical architecture, economic model, use case compared to a traditional instrument, adoption metrics, and risks.</p>
+            <p>Pick something you find genuinely interesting. You will be writing 2 to 3 pages about your chosen asset, so curiosity matters more than familiarity. Each profile below includes a brief overview, key metrics, and links to official documentation and recommended research sources.</p>
+            <p>All eight assets are well-documented and have enough public information for a thorough evaluation. You may not choose an asset outside this list without instructor approval.</p>
+        </div>
+
+        <div class="grid">
+
+            <!-- 1. Ethereum -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Ethereum</span>
+                    <span class="ticker">ETH</span>
+                </div>
+                <span class="category-tag cat-crypto">Major Cryptocurrency</span>
+                <p class="description">The largest programmable blockchain and the foundation for most DeFi protocols, NFTs, and tokenized assets. Ethereum transitioned from Proof of Work to Proof of Stake in September 2022 ("The Merge"), reducing energy consumption by over 99%. Its smart contract platform enables developers to build decentralized applications without intermediaries.</p>
+                <dl class="metrics">
+                    <dt>Market Cap:</dt> <dd>~$200-400B (varies; consistently #2 by market cap)</dd>
+                    <dt>Daily Transactions:</dt> <dd>~1.1M on mainnet</dd>
+                    <dt>Validators:</dt> <dd>~900,000+ active validators</dd>
+                </dl>
+                <p class="protocol-type"><strong>Consensus:</strong> Proof of Stake (Casper FFG + LMD-GHOST)</p>
+                <div class="links">
+                    <ul>
+                        <li><a href="https://ethereum.org/en/developers/docs/" target="_blank">Official Documentation</a></li>
+                        <li><a href="https://ethereum.org/en/whitepaper/" target="_blank">Ethereum Whitepaper</a></li>
+                        <li><a href="https://ultrasound.money/" target="_blank">Ultrasound.money (supply/burn tracker)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. USDC -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">USD Coin</span>
+                    <span class="ticker">USDC</span>
+                </div>
+                <span class="category-tag cat-stablecoin">Stablecoin</span>
+                <p class="description">A fiat-backed stablecoin issued by Circle, pegged 1:1 to the US dollar and backed by cash and short-term US Treasuries. USDC operates across multiple blockchains (Ethereum, Solana, Avalanche, and others) and serves as a primary settlement token in DeFi lending, trading, and payments. Circle publishes monthly reserve attestation reports from a major accounting firm.</p>
+                <dl class="metrics">
+                    <dt>Market Cap:</dt> <dd>~$30-35B (varies with issuance/redemption cycles)</dd>
+                    <dt>Daily Transfer Volume:</dt> <dd>~$5-10B across all chains</dd>
+                    <dt>Chains Supported:</dt> <dd>15+ blockchains</dd>
+                </dl>
+                <p class="protocol-type"><strong>Type:</strong> Fiat-collateralized stablecoin (centralized issuer)</p>
+                <div class="links">
+                    <ul>
+                        <li><a href="https://www.circle.com/en/usdc" target="_blank">Circle USDC Overview</a></li>
+                        <li><a href="https://www.circle.com/en/transparency" target="_blank">Reserve Attestation Reports</a></li>
+                        <li><a href="https://www.federalreserve.gov/econres/notes/feds-notes/the-stable-in-stablecoins-20221216.html" target="_blank">Fed Note: "The Stable in Stablecoins" (2022)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3. Aave -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Aave</span>
+                    <span class="ticker">AAVE</span>
+                </div>
+                <span class="category-tag cat-defi-lending">DeFi Lending</span>
+                <p class="description">The largest decentralized lending protocol by total value locked. Aave allows users to lend and borrow crypto assets through liquidity pools governed by smart contracts, with no bank or credit officer involved. Interest rates adjust algorithmically based on supply and demand within each pool. The AAVE token provides governance rights and can be staked to backstop the protocol's safety module.</p>
+                <dl class="metrics">
+                    <dt>TVL:</dt> <dd>~$10-15B across all deployments</dd>
+                    <dt>Chains:</dt> <dd>Ethereum, Polygon, Arbitrum, Optimism, Avalanche, others</dd>
+                    <dt>Markets:</dt> <dd>100+ supported assets across deployments</dd>
+                </dl>
+                <p class="protocol-type"><strong>Protocol Type:</strong> Overcollateralized lending/borrowing (pool-based)</p>
+                <div class="links">
+                    <ul>
+                        <li><a href="https://docs.aave.com/" target="_blank">Aave Documentation</a></li>
+                        <li><a href="https://governance.aave.com/" target="_blank">Aave Governance Forum</a></li>
+                        <li><a href="https://research.stlouisfed.org/publications/review/2021/02/05/decentralized-finance-on-blockchain-and-smart-contract-based-financial-markets" target="_blank">Schar, "DeFi: On Blockchain and Smart Contract-Based Financial Markets" (St. Louis Fed, 2021)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. Uniswap -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Uniswap</span>
+                    <span class="ticker">UNI</span>
+                </div>
+                <span class="category-tag cat-dex">Decentralized Exchange</span>
+                <p class="description">The largest decentralized exchange by trading volume, built on Ethereum. Uniswap replaces traditional order books with an automated market maker (AMM) model: liquidity providers deposit token pairs into pools, and prices adjust algorithmically using a constant product formula. Anyone can trade or provide liquidity without registration, KYC, or intermediaries. Uniswap V3 introduced concentrated liquidity, allowing providers to allocate capital within specific price ranges.</p>
+                <dl class="metrics">
+                    <dt>Daily Volume:</dt> <dd>~$1-3B across all deployments</dd>
+                    <dt>TVL:</dt> <dd>~$4-6B</dd>
+                    <dt>Cumulative Volume:</dt> <dd>$2T+ all-time</dd>
+                </dl>
+                <p class="protocol-type"><strong>Protocol Type:</strong> Automated Market Maker (constant product formula)</p>
+                <div class="links">
+                    <ul>
+                        <li><a href="https://docs.uniswap.org/" target="_blank">Uniswap Documentation</a></li>
+                        <li><a href="https://uniswap.org/whitepaper-v3.pdf" target="_blank">Uniswap V3 Whitepaper</a></li>
+                        <li><a href="https://www.paradigm.xyz/2021/06/uniswap-v3-the-universal-amm" target="_blank">Paradigm: "Uniswap V3 as a Universal AMM"</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 5. Chainlink -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Chainlink</span>
+                    <span class="ticker">LINK</span>
+                </div>
+                <span class="category-tag cat-infrastructure">Infrastructure / Oracle</span>
+                <p class="description">The dominant decentralized oracle network, providing real-world data (prices, weather, sports scores, random numbers) to smart contracts that cannot access external information on their own. Chainlink's price feeds secure over $20B in DeFi value, making it critical infrastructure for lending protocols, derivatives platforms, and stablecoins. The LINK token compensates node operators who retrieve and validate off-chain data.</p>
+                <dl class="metrics">
+                    <dt>Market Cap:</dt> <dd>~$7-12B</dd>
+                    <dt>Value Secured:</dt> <dd>$20B+ in DeFi protocols relying on Chainlink price feeds</dd>
+                    <dt>Integrations:</dt> <dd>1,900+ projects across 30+ blockchains</dd>
+                </dl>
+                <p class="protocol-type"><strong>Protocol Type:</strong> Decentralized oracle network (off-chain data aggregation)</p>
+                <div class="links">
+                    <ul>
+                        <li><a href="https://docs.chain.link/" target="_blank">Chainlink Documentation</a></li>
+                        <li><a href="https://chain.link/whitepaper" target="_blank">Chainlink 2.0 Whitepaper</a></li>
+                        <li><a href="https://blog.chain.link/what-is-a-blockchain-oracle/" target="_blank">Chainlink Blog: "What Is a Blockchain Oracle?"</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 6. Lido -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Lido</span>
+                    <span class="ticker">LDO / stETH</span>
+                </div>
+                <span class="category-tag cat-protocol">Liquid Staking Protocol</span>
+                <p class="description">The largest liquid staking protocol, holding roughly 28% of all staked Ethereum. Lido lets users stake ETH without running their own validator and receive stETH (staked ETH) in return, a liquid token that accrues staking rewards and can be used simultaneously in DeFi. This solves the liquidity problem of traditional staking, where assets are locked and unusable. The LDO token governs protocol parameters including node operator selection and fee structures.</p>
+                <dl class="metrics">
+                    <dt>TVL:</dt> <dd>~$15-20B (largest DeFi protocol by TVL)</dd>
+                    <dt>ETH Staked:</dt> <dd>~9M+ ETH</dd>
+                    <dt>Market Share:</dt> <dd>~28% of all staked ETH</dd>
+                </dl>
+                <p class="protocol-type"><strong>Protocol Type:</strong> Liquid staking (pooled validator delegation)</p>
+                <div class="links">
+                    <ul>
+                        <li><a href="https://docs.lido.fi/" target="_blank">Lido Documentation</a></li>
+                        <li><a href="https://lido.fi/static/Lido:Ethereum-Liquid-Staking.pdf" target="_blank">Lido Whitepaper</a></li>
+                        <li><a href="https://dune.com/lido/lido-morning-coffee-dashboard" target="_blank">Lido Dune Analytics Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 7. Stellar -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Stellar</span>
+                    <span class="ticker">XLM</span>
+                </div>
+                <span class="category-tag cat-payment">Payment Network</span>
+                <p class="description">A blockchain network designed specifically for fast, low-cost cross-border payments and asset tokenization. Stellar processes transactions in 3 to 5 seconds at a fraction of a cent per transaction, targeting remittances and financial inclusion in underbanked regions. The network uses the Stellar Consensus Protocol (SCP), a federated Byzantine agreement mechanism that prioritizes speed and low energy use over full decentralization. Major partnerships include MoneyGram and the UNHCR for aid disbursement.</p>
+                <dl class="metrics">
+                    <dt>Market Cap:</dt> <dd>~$3-5B</dd>
+                    <dt>Daily Operations:</dt> <dd>~5-8M ledger operations</dd>
+                    <dt>Transaction Cost:</dt> <dd>~0.00001 XLM (fraction of a cent)</dd>
+                </dl>
+                <p class="protocol-type"><strong>Consensus:</strong> Stellar Consensus Protocol (Federated Byzantine Agreement)</p>
+                <div class="links">
+                    <ul>
+                        <li><a href="https://developers.stellar.org/docs" target="_blank">Stellar Developer Documentation</a></li>
+                        <li><a href="https://www.stellar.org/papers/stellar-consensus-protocol" target="_blank">SCP Whitepaper</a></li>
+                        <li><a href="https://www.stellar.org/case-studies" target="_blank">Stellar Case Studies (MoneyGram, UNHCR)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 8. MakerDAO / DAI -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">MakerDAO / Sky</span>
+                    <span class="ticker">DAI / MKR</span>
+                </div>
+                <span class="category-tag cat-stablecoin">Decentralized Stablecoin</span>
+                <p class="description">The protocol behind DAI, the largest decentralized stablecoin. Unlike USDC (centralized issuer, fiat reserves), DAI is generated by users who lock cryptocurrency collateral into smart contract "vaults" and mint DAI against it. The system requires overcollateralization (typically 150%+), and liquidation mechanisms protect the peg if collateral values drop. MKR token holders govern risk parameters including collateral types, liquidation ratios, and stability fees. MakerDAO recently rebranded to Sky Protocol, though DAI and the underlying mechanics remain the same.</p>
+                <dl class="metrics">
+                    <dt>DAI Supply:</dt> <dd>~$5B in circulation</dd>
+                    <dt>TVL:</dt> <dd>~$8-10B in locked collateral</dd>
+                    <dt>Collateral Types:</dt> <dd>ETH, WBTC, USDC, real-world assets, others</dd>
+                </dl>
+                <p class="protocol-type"><strong>Protocol Type:</strong> Overcollateralized stablecoin (CDP-based, decentralized governance)</p>
+                <div class="links">
+                    <ul>
+                        <li><a href="https://docs.makerdao.com/" target="_blank">MakerDAO Documentation</a></li>
+                        <li><a href="https://makerdao.com/en/whitepaper/" target="_blank">MakerDAO Whitepaper</a></li>
+                        <li><a href="https://daistats.com/" target="_blank">DAI Stats (real-time metrics)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            FINAN-VIII: Future of Finance | Unit 5: Blockchain, Crypto, and DeFi
+        </footer>
+    </div>
+</body>
+</html>
